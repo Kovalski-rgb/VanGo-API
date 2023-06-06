@@ -5,25 +5,26 @@ Api do VanGo
     - [Maven](https://maven.apache.org/install.html)
 
 ## Como rodar?
-    1 - Rode os seguintes comandos no seu terminal:
-    ```
-    git clone https://github.com/Kovalski-rgb/VanGo-API.git
-    cd VanGo-API
-    ```
+1 - Rode os seguintes comandos no seu terminal:
 
-    2 - Crie uma database nomeada `VanGoApi` no `MySQL`
+```
+git clone https://github.com/Kovalski-rgb/VanGo-API.git
+cd VanGo-API
+```
 
-    3 - Configure seu usuário no arquivo de propriedades, localizado aqui:
-        `src/main/resources/application.properties`
-        mude os colchetes nas linhas dentro do arquivo para as informações de acesso da sua base de dados:
-        ```
-        spring.datasource.username=[username]
-        spring.datasource.password=[password]
-        ```
+2 - Crie uma database nomeada `VanGoApi` no `MySQL`
 
-    4 - Para inicializar o servidor, rode o seguinte comando dentro da pasta raiz:
+3 - Configure seu usuário no arquivo de propriedades, localizado aqui:
+    `src/main/resources/application.properties`
+    Mude os colchetes nas linhas dentro do arquivo para as informações de acesso da sua base de dados:
+```
+spring.datasource.username=[username]
+spring.datasource.password=[password]
+```
 
-        ```mvn spring-boot:run```
+4 - Para inicializar o servidor, rode o seguinte comando dentro da pasta raiz:
+
+    mvn spring-boot:run
 
 
 Url para acessar a API: [http://localhost:8080/vango/api/login](http://localhost:8080/vango/api/login)
