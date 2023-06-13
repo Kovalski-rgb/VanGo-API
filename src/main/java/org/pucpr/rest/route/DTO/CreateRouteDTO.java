@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 public class CreateRouteDTO {
 
     @NotNull
+    private Long driverId;
+
+    @NotNull
     private Double price;
 
     @NotNull

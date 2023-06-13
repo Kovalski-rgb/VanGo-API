@@ -1,6 +1,10 @@
 package org.pucpr.rest.route;
 
+import jakarta.validation.constraints.NotNull;
+import org.pucpr.rest.driver.DriverRepository;
 import org.pucpr.rest.route.DTO.CreateRouteDTO;
+import org.pucpr.rest.route.response.RouteResponseDTO;
+import org.pucpr.settings.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -10,30 +14,27 @@ import java.util.List;
 public class RouteService {
 
     private final RouteRepository repository;
+    private final DriverRepository driverRepository;
 
-    public RouteService(RouteRepository repository) {
+    public RouteService(RouteRepository repository, DriverRepository driverRepository) {
         this.repository = repository;
+        this.driverRepository = driverRepository;
     }
 
     public void addRoute(CreateRouteDTO request){
 
-        var aux = new Route();
-        aux.setPrice(request.getPrice());
-        aux.setStreetArrival(request.getStreetArrival());
-        aux.setStreetDeparture(request.getStreetDeparture());
-        aux.setTimeArrival(LocalDateTime.now());
-        aux.setTimeDeparture(LocalDateTime.now());
+        var driverOptional = driverRepository.findById(request.getDriverId());
+        if(driverOptional.isEmpty())
+            throw new NotFoundException("There is no driver with provided Id");
 
+        var aux = new Route(request);
+        aux.setDriver(driverOptional.get());
         repository.save(aux);
 
     }
 
-    public List<Route> getAllRoutes(){
-        var aux = repository.findAll();
-        for(Route r : aux){
-            r.setDriver(null);
-        }
-        return aux;
+    public List<RouteResponseDTO> getAllRoutes(){
+        return repository.findAll().stream().map(RouteResponseDTO::new).toList();
     }
 
 }

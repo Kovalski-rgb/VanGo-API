@@ -3,6 +3,7 @@ package org.pucpr.rest.route;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.pucpr.rest.route.DTO.CreateRouteDTO;
+import org.pucpr.rest.route.response.RouteResponseDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class RouteResource {
 
     @GetMapping("/all")
     @Transactional
-    public ResponseEntity<List<Route>> getAllRoutes(){
+    public ResponseEntity<List<RouteResponseDTO>> getAllRoutes(){
         return ResponseEntity.ok(service.getAllRoutes());
     }
 

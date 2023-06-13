@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.pucpr.rest.route.Route;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +27,11 @@ public class DriverAndRouteDTO {
     @Min(0) @Max(5)
     private Double driverScore;
 
+    public DriverAndRouteDTO(Route route) {
+        var aux = route.getDriver();
+        this.name = aux.getName();
+        this.vehicle = aux.getVehicle();
+        this.price = route.getPrice();
+        this.driverScore = aux.getScore();
+    }
 }

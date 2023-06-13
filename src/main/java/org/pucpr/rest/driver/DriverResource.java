@@ -4,14 +4,14 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.pucpr.rest.driver.DTO.CreateDriverDTO;
 import org.pucpr.rest.driver.DTO.DriverAndRouteDTO;
+import org.pucpr.rest.driver.respose.DriverResponseDTO;
 import org.pucpr.rest.route.DTO.DriverRequestByRouteDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/drivers")
@@ -25,10 +25,9 @@ public class DriverResource {
 
     @PostMapping("/find")
     @Transactional
-    public ResponseEntity<List<DriverAndRouteDTO>> getDriverByRoute(
+    public ResponseEntity<Set<DriverAndRouteDTO>> getDriverByRoute(
             @Valid @RequestBody DriverRequestByRouteDTO request
     ){
-        var returnValue = new DriverAndRouteDTO("jeremias", "fiat com escada", 125D, 5D);
         return ResponseEntity.ok(service.findDriverByRoute(request));
     }
 
@@ -39,6 +38,12 @@ public class DriverResource {
     ){
         service.saveDriver(request);
 
+    }
+
+    @GetMapping("/all")
+    @Transactional
+    public ResponseEntity<List<DriverResponseDTO>> getAllDrivers(){
+        return ResponseEntity.ok(service.getAllDrivers());
     }
 
 }

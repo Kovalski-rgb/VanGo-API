@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 import org.pucpr.rest.driver.Driver;
+import org.pucpr.rest.route.DTO.CreateRouteDTO;
 
 import java.time.LocalDateTime;
 
@@ -33,6 +34,7 @@ public class Route {
     @NotNull
     private LocalDateTime timeArrival;
 
+    @NotNull
     @ManyToOne
     @JoinTable(
             name="driverRoutes",
@@ -40,6 +42,14 @@ public class Route {
             inverseJoinColumns = @JoinColumn(name="driverId", referencedColumnName = "id")
     )
     private Driver driver;
+
+    public Route(CreateRouteDTO request) {
+        this.setPrice(request.getPrice());
+        this.setStreetArrival(request.getStreetArrival());
+        this.setStreetDeparture(request.getStreetDeparture());
+        this.setTimeArrival(LocalDateTime.now());
+        this.setTimeDeparture(LocalDateTime.now());
+    }
 
     @Override
     public String toString() {

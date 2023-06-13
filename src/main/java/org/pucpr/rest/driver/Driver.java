@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.pucpr.rest.driver.DTO.CreateDriverDTO;
 import org.pucpr.rest.route.Route;
 
 import java.util.List;
@@ -33,6 +34,12 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Route> routes;
+
+    public Driver(CreateDriverDTO request) {
+        this.name = request.getName();
+        this.vehicle = request.getVehicle();
+        this.score = request.getScore();
+    }
 
     @Override
     public String toString() {
