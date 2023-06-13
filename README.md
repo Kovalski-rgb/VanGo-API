@@ -27,4 +27,4 @@ spring.datasource.password=[password]
     mvn spring-boot:run
 
 
-Url para acessar a API: [http://localhost:8080/vango/api/login](http://localhost:8080/vango/api/login)
+Url para acessar a API: [http://localhost:8080/vango/api/swagger-ui/index.html](http://localhost:8080/vango/api/swagger-ui/index.html)
