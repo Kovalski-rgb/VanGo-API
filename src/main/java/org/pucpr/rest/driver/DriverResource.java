@@ -33,11 +33,10 @@ public class DriverResource {
 
     @PostMapping("/new")
     @Transactional
-    public void createNewDriver(
+    public ResponseEntity<DriverResponseDTO> createNewDriver(
             @Valid @RequestBody CreateDriverDTO request
     ){
-        service.saveDriver(request);
-
+        return ResponseEntity.ok(service.saveDriver(request));
     }
 
     @GetMapping("/all")

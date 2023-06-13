@@ -36,8 +36,8 @@ public class DriverService {
                 .collect(Collectors.toSet());
     }
 
-    public void saveDriver(CreateDriverDTO request){
-        repository.save(new Driver(request));
+    public DriverResponseDTO saveDriver(CreateDriverDTO request){
+        return new DriverResponseDTO(repository.save(new Driver(request)));
     }
 
 }

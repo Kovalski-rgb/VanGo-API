@@ -1,8 +1,8 @@
 package org.pucpr.rest.driver.DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,15 +14,23 @@ import org.pucpr.rest.route.Route;
 @NoArgsConstructor
 public class DriverAndRouteDTO {
 
+
+    @Schema(example = "Jeremias")
     @NotNull
     private String name;
 
+
+    @Schema(example = "Fiat uno mili")
     @NotNull
     private String vehicle;
 
+
+    @Schema(example = "170")
     @NotNull
     private Double price;
 
+
+    @Schema(example = "4.8")
     @NotNull
     @Min(0) @Max(5)
     private Double driverScore;

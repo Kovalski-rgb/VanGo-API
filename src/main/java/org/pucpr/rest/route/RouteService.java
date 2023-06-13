@@ -19,7 +19,7 @@ public class RouteService {
         this.driverRepository = driverRepository;
     }
 
-    public void addRoute(CreateRouteDTO request){
+    public RouteResponseDTO createRoute(CreateRouteDTO request){
 
         var driverOptional = driverRepository.findById(request.getDriverId());
         if(driverOptional.isEmpty())
@@ -27,8 +27,7 @@ public class RouteService {
 
         var aux = new Route(request);
         aux.setDriver(driverOptional.get());
-        repository.save(aux);
-
+        return new RouteResponseDTO(repository.save(aux));
     }
 
     public List<RouteResponseDTO> getAllRoutes(){

@@ -21,10 +21,10 @@ public class RouteResource {
 
     @PostMapping("/new")
     @Transactional
-    public void addRoute(
+    public ResponseEntity<RouteResponseDTO> addRoute(
         @Valid @RequestBody CreateRouteDTO request
         ){
-            service.addRoute(request);
+            return ResponseEntity.ok(service.createRoute(request));
         }
 
     @GetMapping("/all")
