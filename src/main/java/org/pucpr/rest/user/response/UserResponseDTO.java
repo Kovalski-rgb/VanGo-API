@@ -1,20 +1,19 @@
-package org.pucpr.rest.user.request;
+package org.pucpr.rest.user.response;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUser {
+public class UserResponseDTO {
 
     @NotNull
-    String username;
+    private Long id;
 
     @NotNull
-    String password;
+    private String username;
 
 }

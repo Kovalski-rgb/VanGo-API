@@ -1,13 +1,11 @@
 package org.pucpr.rest.route;
 
-import jakarta.validation.constraints.NotNull;
 import org.pucpr.rest.driver.DriverRepository;
 import org.pucpr.rest.route.DTO.CreateRouteDTO;
 import org.pucpr.rest.route.response.RouteResponseDTO;
-import org.pucpr.settings.NotFoundException;
+import org.pucpr.settings.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
